@@ -22,10 +22,9 @@ def app(environ, start_response):
 	else:
 		#data = cgi.escape( query )
 		pairs = cgi.parse_qs( query )
-		#data = 'data:\n' + cgi.escape( query ) + '\n'
-		data = ''
-		for key, value in pairs.items():
-			data = data + str(key) + '=' + str(value) + '\n'
+		data = cgi.escape( query ).replace("&amp;", "\n")
+		#for key, value in pairs.items():
+		#	data = data + str(key) + '=' + int(str(pairs[key]).replace( "'", "" ).replace("[", "").replace("]", "")) + '\n'
 	status = '200 OK'
 	response_headers = [
 		('Content-type','text/plain'),
