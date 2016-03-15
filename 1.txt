@@ -1,1 +1,2 @@
 11
+url(r'blog/(?P<blog_name>[^/]+)/post/(?P<title>[^/]+)/?', post_details)
