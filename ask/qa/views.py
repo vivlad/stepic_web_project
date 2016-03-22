@@ -26,7 +26,7 @@ def draw_question(request, q_id):
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
-    return render(request, 'ask/question.html', {
+    return render(request, 'question.html', {
         'question' : question,
         'title' : question.title,
         'text' : question.text,
@@ -47,7 +47,7 @@ def pages_all(request):
     	page = paginator.page(page)  # Page
     except EmptyPage:
     	page = paginator.page(paginator.num_pages)
-    return render(request, 'ask/all.html', {
+    return render(request, 'all.html', {
         'posts':  page.object_list,
         'paginator': paginator, 'page': page,
     })
@@ -66,7 +66,7 @@ def pages_popular(request):
     	page = paginator.page(page)  # Page
     except EmptyPage:
     	page = paginator.page(paginator.num_pages)
-    return render(request, 'ask/all.html', {
+    return render(request, 'all.html', {
         'posts':  page.object_list,
         'paginator': paginator, 'page': page,
     })
