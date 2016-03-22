@@ -26,11 +26,15 @@ def draw_question(request, q_id):
         question = Question.objects.get(id = q_id)
     except Question.DoesNotExist:
         raise Http404
+    try:
+        answers = Answer.objects.filter(question_id=q_id)
+    except Answer.DoesNotExist:
+        answers = ''
     return render(request, 'question.html', {
         'question' : question,
         'title' : question.title,
         'text' : question.text,
-         
+        'answers': answers
         })
 
 def pages_all(request):
@@ -54,7 +58,7 @@ def pages_all(request):
 
 def pages_popular(request):
     posts = Question.objects.all()
-    posts = posts.order_by('rating')
+    posts = posts.order_by('-rating')
     limit = request.GET.get('limit', 10)
     try:
     	page = request.GET.get('page', 1)

@@ -3,7 +3,9 @@
 <body>
 <h1>{{ question.title }}</h1>
 <p>{{ question.text }}</p>
-
+{% for answer in answers %} 
+    <p>{{answer.text}}</p>
+{% endfor %} 
 
 </body>
 </html>
