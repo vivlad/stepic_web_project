@@ -1,0 +1,21 @@
+<html>
+<head>All</head>
+<body>
+{% for post in posts %}
+	<h1><a href="/question/{{post.id}}">{{ post.title }}</a></h1>
+	<p>{{ post.text }}</p>
+{% endfor %}
+<nav><ul class="pagination"> 
+{% for p in paginator.page_range %} 
+  {% if p == page.number %} 
+  <li class="active"> 
+  {% else %} 
+  <li> 
+  {% endif %} 
+    <a href="{{ paginator.baseurl }}{{ p }}"> 
+    {{ p }}</a> 
+  </li> 
+{% endfor %} 
+</ul></nav>
+</body>
+</html>
